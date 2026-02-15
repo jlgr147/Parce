@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parce de mi corazón ✨</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    background: radial-gradient(circle at bottom, #0d001a, #000010 80%);
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+/* Pantalla inicio */
+.inicio{
+    position:absolute;
+}
+
+button{
+    padding:18px 35px;
+    font-size:20px;
+    background:linear-gradient(45deg,#a855f7,#ec4899);
+    border:none;
+    border-radius:40px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px #a855f7;
+    animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+/* Estrellas */
+.estrella{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* Estrella fugaz */
+.fugaz{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 10px white;
+    animation:fugaz 3s linear infinite;
+}
+
+@keyframes fugaz{
+    0%{
+        transform:translate(0,0);
+        opacity:1;
+    }
+    100%{
+        transform:translate(600px,300px);
+        opacity:0;
+    }
+}
+
+/* Tarjeta */
+.tarjeta{
+    display:none;
+    position:relative;
+    background:rgba(255,255,255,0.08);
+    padding:40px;
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 40px rgba(255,255,255,0.3);
+    animation:aparecer 2s ease-in-out;
+    max-width:420px;
+}
+
+h1{
+    font-size:32px;
+    margin-bottom:20px;
+    color:#ffccff;
+}
+
+p{
+    font-size:20px;
+    line-height:1.6;
+}
+
+@keyframes aparecer{
+    from{opacity:0;transform:scale(0.7);}
+    to{opacity:1;transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="inicio">
+    <button onclick="activar()">✨ Parce toca aquí ✨</button>
+</div>
+
+<div class="tarjeta" id="mensaje">
+    <h1>✨ Parce de mi corazón ✨</h1>
+    <p>
+        Te quiero mucho, gracias por siempre estar.  
+        Tu amistad es muy importante para mí.  
+        Espero tengas un lindo día de San Valentín 🌟
+    </p>
+</div>
+
+<script>
+
+/* Crear estrellas fondo */
+for(let i=0;i<200;i++){
+    let estrella=document.createElement("div");
+    estrella.classList.add("estrella");
+    estrella.style.top=Math.random()*100+"vh";
+    estrella.style.left=Math.random()*100+"vw";
+    estrella.style.animationDuration=(Math.random()*2+1)+"s";
+    document.body.appendChild(estrella);
+}
+
+/* Estrellas fugaces */
+function crearFugaz(){
+    let fugaz=document.createElement("div");
+    fugaz.classList.add("fugaz");
+    fugaz.style.top=Math.random()*50+"vh";
+    fugaz.style.left=Math.random()*50+"vw";
+    document.body.appendChild(fugaz);
+    setTimeout(()=>{fugaz.remove();},3000);
+}
+setInterval(crearFugaz,2000);
+
+/* Activar mensaje */
+function activar(){
+    document.querySelector(".inicio").style.display="none";
+    document.getElementById("mensaje").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
